@@ -16,7 +16,7 @@ Each folder contains the downloaded images based on detected file extension.
 
 ---
 
-## 🛠️ Usage
+## Usage
 
 1. **Install dependencies:**
 
@@ -34,7 +34,7 @@ Each folder contains the downloaded images based on detected file extension.
 
 ---
 
-## ⚙️ How It Works
+## How It Works
 
 - Iteratively loads pages from `pfps.gg`.
 - Scrapes `img` tags and filters for valid image URLs.

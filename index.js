@@ -2,8 +2,8 @@ const axios = require('axios'),
   cheerio = require('cheerio'),
   fs = require('fs'),
   path = require('path');
-const BASE = 'https://pfps.gg/banners',
-  DIR = path.join(__dirname, 'banners');
+const BASE = 'https://pfps.gg',
+  DIR = path.join(__dirname, 'avatar');
 const HEADERS = {
     'User-Agent': 'Mozilla/5.0',
     'Accept-Language': 'en-US,en;q=0.9'
@@ -37,16 +37,16 @@ const download = async u => {
     recursive: true
   });
   for (let page = 1;; page++) {
-    console.log(`🔍 Page ${page}`);
+    console.log(`Page ${page}`);
     try {
       const {
         data
-      } = await axios.get(`${BASE}?page=${page}`, {
+      } = await axios.get(`${BASE}/?page=${page}&sort=recent`, {
         headers: HEADERS
       });
       const $ = cheerio.load(data);
       const imgs = $('img').map((_, el) => $(el).attr('src')).get()
-        .filter(s => s ?.startsWith('https://cdn.pfps.gg/banners') && EXT.test(s));
+        .filter(s => s ?.startsWith('https://cdn.pfps.gg') && EXT.test(s));
       if (!imgs.length) break;
       for (const u of imgs) await download(u);
     } catch (e) {
